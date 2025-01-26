@@ -1,3 +1,89 @@
+// Longest Substring Without Repeating Characters
+//  Input: s = "abcabcbb"
+//  longest one = "abc"
+//
+const longestSubstring = (s) => {
+  let set = new Set()
+  let left = 0
+  let maxLength = 0
+  for (let right = 0; right < s.length; right++) {
+    while (set.has(s[right])) {
+      set.delete(s[left])
+      left++
+    }
+    set.add(s[right])
+    maxLength = Math.max(maxLength, right - left + 1)
+  }
+  return maxLength
+}
+
+console.log(longestSubstring("abcabcbb"))
+
+// 8. Count Primes
+// Goal: Count the number of prime numbers
+// less than the given number n.
+const countPrimes = (n) => {
+  if (n < 2) return 0
+  const isPrime = new Array(n).fill(true)
+  isPrime[0] = isPrime[1] = false
+  for (let i = 2; i * i < n; i++) {
+    if (isPrime[i]) {
+      for (let j = i * i; j < n; j += i) {
+        isPrime[j] = false
+      }
+    }
+  }
+  return isPrime.filter(Boolean).length
+  // return true
+}
+// Example
+console.log(countPrimes(20)) // Output: 4
+// How Map Works in JavaScript
+/* A Map is a collection of key-value pairs. 
+ * Keys can be of any data type, 
+ * and the Map maintains the order of insertion. 
+ * Key methods include:
+
+// map.set(key, value) – Adds or updates a key-value pair.
+map.get(key) – Retrieves the value associated with the key.
+map.has(key) – Checks if the key exists.
+map.delete(key) – Deletes a key-value pair.
+map.size – Returns the number of key-value pairs. */
+
+console.log(typeof null) // output: Object
+console.log(typeof 1) // output: Number
+console.log(typeof []) // object
+console.log(typeof {}) // object
+
+const fruits = ["banana", "strawberry", "banana", "mango", "strawberry"]
+const fruitsCount = new Map()
+for (const fruit of fruits) {
+  fruitsCount.set(fruit, (fruitsCount.get(fruit) || 0) + 1)
+}
+console.log(fruitsCount)
+
+const numbers = [1, 2, 2, 3, 3, 4]
+// const numbersWithoutDupes = [...new Set(numbers)]
+
+// How Set Works in JavaScript
+/* A Set is a collection of unique values. It doesn’t allow duplicate elements. Key methods include:
+set.add(value) – Adds a value to the set.
+set.has(value) – Checks if the value exists.
+set.delete(value) – Removes a value from the set.
+set.size – Returns the number of elements in the set. */
+
+const mySet = new Set()
+
+mySet.add(1)
+mySet.add(2)
+mySet.add(2) // won't be acc
+
+mySet.has(2) // true
+for (value of mySet) {
+  // 1st will be 1
+  // 2st will be 2
+}
+
 // 4. Valid Parentheses
 // Goal: Check if a string with parentheses,
 // brackets, and braces is valid
@@ -128,9 +214,3 @@ console.log(isValid("()[]{}")) // Output: true
 
 // Example
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])) // Output: 6
-
-// 8. Count Primes
-// Goal: Count the number of prime numbers less than the given number n.
-
-// Example
-console.log(countPrimes(10)) // Output: 4
