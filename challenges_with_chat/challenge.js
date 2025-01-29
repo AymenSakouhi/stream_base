@@ -1,3 +1,20 @@
+// Input: text = "AI is fun. AI is the future."
+// Output: { ai: 2, is: 2, fun: 1, the: 1, future: 1 }
+
+const textRepeatCounter = (str) => {
+  /* const splittedString = str
+    .toLowerCase()
+    .replace(/[^\w\s]/g, "")
+    .split(/\s+/) */
+  const splittedString = str.replaceAll(".", "").split(" ")
+
+  return splittedString.reduce((freq, word) => {
+    freq[word] = (freq[word] || 0) + 1
+    return freq
+  }, {})
+}
+console.log(textRepeatCounter("AI is fun. AI is the future."))
+
 // Longest Substring Without Repeating Characters
 //  Input: s = "abcabcbb"
 //  longest one = "abc"
@@ -123,6 +140,7 @@ console.log(removeDuplicates([1, 1, 2])) // Output: 2 (array becomes [1, 2])
 
 const mergeSortedArrays = (nums1, nums2) => {
   const bothArrays = [...nums1, ...nums2]
+  const concatinatedArr = nums1.push(nums2.flat())
   return bothArrays.sort((a, b) => b - a)
 }
 // Example
