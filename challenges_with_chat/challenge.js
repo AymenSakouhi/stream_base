@@ -1,3 +1,4 @@
+// Thanks to BStudio for the interview question
 const countOnes = (n) => {
   const arr = new Array(n + 1).fill("").map((ele, i) => i.toString())
   const counter = arr.reduce((acc, curr) => {
