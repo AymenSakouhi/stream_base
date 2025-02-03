@@ -1,19 +1,34 @@
+const countOnes = (n) => {
+  const arr = new Array(n + 1).fill("").map((ele, i) => i.toString())
+  const counter = arr.reduce((acc, curr) => {
+    if (curr.toString().includes("1")) {
+      let howManyOnes = curr.split("")
+      let numberOfOnes = howManyOnes.filter((ele) => ele === "1").length
+      if (numberOfOnes) acc += numberOfOnes
+    }
+    return acc
+  }, 0)
+  return counter
+}
+
+console.log(countOnes(13))
+console.log("----")
+
 // Input: text = "AI is fun. AI is the future."
 // Output: { ai: 2, is: 2, fun: 1, the: 1, future: 1 }
 
 const textRepeatCounter = (str) => {
-  /* const splittedString = str
+  const splittedString = str
     .toLowerCase()
     .replace(/[^\w\s]/g, "")
-    .split(/\s+/) */
-  const splittedString = str.replaceAll(".", "").split(" ")
-
+    .split(/\s+/)
+  // const splittedString = str.replaceAll(".", "").split(" ")
   return splittedString.reduce((freq, word) => {
     freq[word] = (freq[word] || 0) + 1
     return freq
   }, {})
 }
-console.log(textRepeatCounter("AI is fun. AI is the future."))
+console.log(textRepeatCounter("AI is fun, AI is the future."))
 
 // Longest Substring Without Repeating Characters
 //  Input: s = "abcabcbb"
