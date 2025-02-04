@@ -1,15 +1,18 @@
 // Thanks to BStudio for the interview question
-const countOnes = (n) => {
-  const arr = new Array(n + 1).fill("").map((ele, i) => i.toString())
-  const counter = arr.reduce((acc, curr) => {
-    if (curr.toString().includes("1")) {
-      let howManyOnes = curr.split("")
-      let numberOfOnes = howManyOnes.filter((ele) => ele === "1").length
-      if (numberOfOnes) acc += numberOfOnes
+function countOnes(to) {
+  var str = "";
+  var count = 0;
+  
+  for (i = 0; i <= to; i++){
+    str = str + i;
+  }
+  
+  for (i = 0; i <= str.length; i++){
+    if (str[i] == '1') {
+      count+=1;
     }
-    return acc
-  }, 0)
-  return counter
+  }
+  return count;
 }
 
 console.log(countOnes(13))
