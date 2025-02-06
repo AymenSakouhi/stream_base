@@ -1,18 +1,76 @@
-// Thanks to BStudio for the interview question
-function countOnes(to) {
-  var str = "";
-  var count = 0;
-  
-  for (i = 0; i <= to; i++){
-    str = str + i;
-  }
-  
-  for (i = 0; i <= str.length; i++){
-    if (str[i] == '1') {
-      count+=1;
+// seperate balls problem
+// @input = string
+// s = 100
+// @output
+// o = 2
+//
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+var minimumSteps = function (s) {
+  let ans = 0
+  let blackCount = 0 // Tracks the number of black balls (1s)
+
+  // Traverse through the string
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "0") {
+      // White ball encountered, add the number of black balls on its left
+      ans += blackCount
+    } else {
+      // Black ball encountered, increment the black ball count
+      blackCount++
     }
   }
-  return count;
+
+  return ans
+}
+
+console.log(minimumSteps("100"))
+// ----- my approach
+const swapBlackBalls = (s) => {
+  let left = 0
+  let right = s.length - 1
+  let swaps = 0
+
+  while (left < right) {
+    // we need to move the left pointer until 1 is actually found
+    while (left < right && s[left] === "0") {
+      // copied from Bstudio in the chat
+      // best contributor
+      left++
+    }
+    while (left < right && s[right] === "1") {
+      right--
+    }
+
+    if (left < right) {
+      swaps++
+      left++
+      right--
+    }
+  }
+  return swaps
+}
+
+console.log(swapBlackBalls("100"))
+
+// Thanks to BStudio for the interview question
+function countOnes(to) {
+  var str = ""
+  var count = 0
+
+  for (let i = 0; i <= to; i++) {
+    str = str + i
+  }
+
+  for (let i = 0; i <= str.length; i++) {
+    if (str[i] == "1") {
+      count += 1
+    }
+  }
+  return count
 }
 
 console.log(countOnes(13))
