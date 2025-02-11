@@ -1,3 +1,54 @@
+/* Given an array nums of n integers, 
+  return an array of all the unique 
+quadruplets [nums[a], nums[b], nums[c], nums[d]] such that */
+// nums[a] + nums[b] + nums[c] + nums[d] == target
+// Input: nums = [2,2,2,2,2], target = 8
+// Output: [[2,2,2,2]]
+//
+//Input: nums = [1,0,-1,0,-2,2], target = 0
+/* Output: [
+  [-2, -1, 1, 2],
+  [-2, 0, 0, 2],
+  [-1, 0, 0, 1],
+] */
+const fourSum = (nums, target) => {
+  // skip nulled length arrays
+  if (!nums.length) return []
+  nums.sort((a, b) => a - b)
+  let result = []
+  for (let i = 0; i < nums.length - 3; i++) {
+    // skip duplicates
+    if (i > 0 && nums[i] === nums[i - 1]) continue
+    for (let j = i + 1; j < nums.length - 2; j++) {
+      if (j > i + 1 && nums[j] === nums[j - 1]) continue
+      let left = j + 1
+      let right = nums.length - 1
+
+      while (left < right) {
+        // unnecessary step
+        let sum = nums[i] + nums[j] + nums[left] + nums[right]
+        if (sum === target) {
+          result.push([nums[i], nums[j], nums[left], nums[right]])
+          // skip the duplicates for left and right
+          while (left < right && nums[left] === nums[left + 1]) left++
+          // thank you for correction SoundzzSaz
+          while (left < right && nums[right] === nums[right - 1]) right--
+
+          left++
+          right--
+        } else if (sum < target) {
+          left++
+        } else {
+          right--
+        }
+      }
+    }
+  }
+
+  return result
+}
+
+console.log(fourSum([1, 0, -1, 0, -2, 2], 0))
 /* Example 1:
 
 Input: nums = [1,3,5,6], target = 5
