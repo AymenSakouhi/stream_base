@@ -1,3 +1,22 @@
+/* Given an integer x, return true if x is a 
+palindrome
+, and false otherwise. */
+/* Input: x = 121
+Output: true
+Explanation: 121 reads as 121 from left to right and from right to left.
+Example 2:
+
+Input: x = -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome. */
+// bonus create your own unique password
+// const uuid = () => Math.random().toString(26).slice(2)
+const isPalindrome = (input) => {
+  return input.toString().split("").reverse().join("") === input.toString()
+}
+
+console.log(isPalindrome("121")) // true
+console.log(isPalindrome("-121")) //false
 /* Given an array nums of n integers, 
   return an array of all the unique 
 quadruplets [nums[a], nums[b], nums[c], nums[d]] such that */
