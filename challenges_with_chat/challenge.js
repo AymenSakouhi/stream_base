@@ -1,3 +1,29 @@
+/* Given a linked list, swap every two adjacent nodes and return its head.
+You must solve the problem without modifying the values
+  in the list's nodes (i.e., only nodes themselves may be changed.) */
+
+/* Input: head = [1, 2, 3, 4]
+Output: [2, 1, 4, 3] */
+class LinkedList {
+  constructor(head = null) {
+    this.head = head
+  }
+}
+
+const swapPairs = (head) => {
+  if (!head || !head.next) return head
+
+  let first = head
+  let second = head.next
+
+  first.next = swapPairs(second.next) //23
+  second.next = first // 01
+
+  return second
+}
+const list = new LinkedList([1, 2, 3, 4])
+console.log(swapPairs([1, 2, 3, 4]))
+
 /* Given an integer x, return true if x is a 
 palindrome
 , and false otherwise. */
