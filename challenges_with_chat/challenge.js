@@ -9,10 +9,7 @@
 
 const Flatten = (arr) => {
   return arr.reduce(
-    (acc, curr) =>
-      Array.isArray(curr)
-        ? acc.concat(Flatten(curr))
-        : acc.concat(curr),
+    (acc, curr) => (Array.isArray(curr) ? acc.concat(Flatten(curr)) : acc.concat(curr)),
     [],
   )
 }
@@ -20,9 +17,7 @@ const Flatten = (arr) => {
 // example of how api reducer function work
 console.log([1, 2, 3].reduce((acc, val) => acc + val, 0))
 
-console.log(
-  Flatten([[1, 2, [3]], 4, 5, [[[[[[[6], [7]]]]]]]]),
-)
+console.log(Flatten([[1, 2, [3]], 4, 5, [[[[[[[6], [7]]]]]]]]))
 /*
  * Debounce Function (Medium)
  * @params {Function} Fn - function to debounce
@@ -32,15 +27,15 @@ console.log(
  * const log = debounce(()=>console.log("hi therek"), 3000)
  * */
 
-/* const debounce = (fn, delay) => {
+const debounce = (fn, delay) => {
   let timer
   return function (...args) {
     //this to bind later
     clearTimeout(timer)
     timer = setTimeout(() => fn.apply(this, args), delay)
   }
-} */
-// const log = debounce((a = "test", b = "best") => console.log("hi there", a, b), 3000)
+}
+const log = debounce((a = "test", b = "best") => console.log("hi there", a, b), 3000)
 
 /*
  * Valid Anagram (easy - medium)
@@ -120,10 +115,7 @@ Explanation: From left to right, it reads -121. From right to left, it becomes 1
 // bonus create your own unique password
 // const uuid = () => Math.random().toString(26).slice(2)
 const isPalindrome = (input) => {
-  return (
-    input.toString().split("").reverse().join("") ===
-    input.toString()
-  )
+  return input.toString().split("").reverse().join("") === input.toString()
 }
 
 console.log(isPalindrome("121")) // true
@@ -156,27 +148,13 @@ const fourSum = (nums, target) => {
 
       while (left < right) {
         // unnecessary step
-        let sum =
-          nums[i] + nums[j] + nums[left] + nums[right]
+        let sum = nums[i] + nums[j] + nums[left] + nums[right]
         if (sum === target) {
-          result.push([
-            nums[i],
-            nums[j],
-            nums[left],
-            nums[right],
-          ])
+          result.push([nums[i], nums[j], nums[left], nums[right]])
           // skip the duplicates for left and right
-          while (
-            left < right &&
-            nums[left] === nums[left + 1]
-          )
-            left++
+          while (left < right && nums[left] === nums[left + 1]) left++
           // thank you for correction SoundzzSaz
-          while (
-            left < right &&
-            nums[right] === nums[right - 1]
-          )
-            right--
+          while (left < right && nums[right] === nums[right - 1]) right--
 
           left++
           right--
@@ -320,9 +298,7 @@ const textRepeatCounter = (str) => {
     return freq
   }, {})
 }
-console.log(
-  textRepeatCounter("AI is fun, AI is the future."),
-)
+console.log(textRepeatCounter("AI is fun, AI is the future."))
 
 // Longest Substring Without Repeating Characters
 //  Input: s = "abcabcbb"
@@ -381,13 +357,7 @@ console.log(typeof 1) // output: Number
 console.log(typeof []) // object
 console.log(typeof {}) // object
 
-const fruits = [
-  "banana",
-  "strawberry",
-  "banana",
-  "mango",
-  "strawberry",
-]
+const fruits = ["banana", "strawberry", "banana", "mango", "strawberry"]
 const fruitsCount = new Map()
 for (const fruit of fruits) {
   fruitsCount.set(fruit, (fruitsCount.get(fruit) || 0) + 1)
@@ -465,12 +435,7 @@ console.log(mergeSortedArrays([1, 3, 5], [2, 4, 6])) // Output: [1, 2, 3, 4, 5, 
 const arr = [1, 2, 3]
 const sum = arr.reduce((acc, curr) => acc + curr, 0)
 const rum = arr.reduce((acc, curr) => acc - curr, 0)
-console.log(
-  ["a", "b", "c"].reduce(
-    (acc, curr) => acc + " " + curr,
-    "",
-  ),
-)
+console.log(["a", "b", "c"].reduce((acc, curr) => acc + " " + curr, ""))
 arr.sum
 
 console.log(sum, rum)
