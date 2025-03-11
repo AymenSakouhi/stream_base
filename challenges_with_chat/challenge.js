@@ -1,3 +1,19 @@
+//Write a function deepEqual(a, b) that returns true
+//if two objects are deeply equal.
+const deepEqual = (a, b) => {
+  if (a === b) return true
+  if (Array.isArray(a) && Array.isArray(b) && a.every((ele, index) => ele === b[index])) return true
+  if (a === null || typeof a !== "object" || b === null || typeof b !== "object") return false
+  const keysOfA = Object.keys(a)
+  const keysOfB = Object.keys(b)
+  if (keysOfA.length !== keysOfB.length) return false
+  return keysOfA.every((key) => keysOfB.includes[key] && deepEqual(a[key], b[key]))
+}
+console.log(deepEqual({ a: 7 }, { a: 5 })) //false
+console.log(deepEqual(7, 7)) //true
+console.log(deepEqual([1, 2, 3], [1, "2", 3])) //false
+console.log(deepEqual([1, 2, 3], [1, 2, 3])) //true
+console.log(deepEqual({ a: 5 }, { a: 5 })) //true
 /*
  * Flatten Multi Arrays
  * @params {[][]} arr - Nested Arrays
@@ -24,7 +40,7 @@ console.log(Flatten([[1, 2, [3]], 4, 5, [[[[[[[6], [7]]]]]]]]))
  * @params delay - value in milliseconds
  * @return {Function}
  * @example
- * const log = debounce(()=>console.log("hi therek"), 3000)
+ * const log = debounce(Date.now(), 3000)
  * */
 
 const debounce = (fn, delay) => {
